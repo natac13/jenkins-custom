@@ -1,0 +1,17 @@
+version: '2.4'
+
+services:
+  jenkins:
+    image: natac13/jenkins:1.0.0-alpine
+    ports:
+      - 8080:8080
+      - 50000:50000
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: 'on-failure'
+    group_add:
+      - 997
+
+volumes:
+  jenkins_home:
