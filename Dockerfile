@@ -17,6 +17,10 @@ RUN apt-get update && \
   apt-get -y install docker-ce && \
   usermod -aG docker jenkins
 
+RUN curl -sL https://deb.nodesource.com/setup_12.x | sudo -E base - && \
+  sudo apt-get install -y nodejs && \
+  npm i -g npm
+
 # When running the service I need to set --group-add to the GID of the host docker group
 # run the following to get the id: echo $(stat -c '%g' /var/run/docker.sock)
 # I running with docker-compose then group_add can be set in version 2s of the compose file
